@@ -228,23 +228,34 @@ Avoid photorealistic arch-viz, CAD.
 
 ## [4] 出图
 
-调用 `image_generate` 工具。**API由用户自行配置。**
+**主路径：直连 xAI（Grok），不经 Hermes。** 用本仓自带的零依赖脚本 `scripts/grok_image.py`。
+密钥从环境变量 `XAI_API_KEY` 读，绝不写进命令行或落盘。
 
 ```bash
-# 检查配置
-hermes config show | grep image_gen
+export XAI_API_KEY=...                      # 一次性，写进 shell/.env
 
-# 配置（用户执行）
-hermes config set image_gen.provider xai   # 或 fal / openai
+# 单张：sketch 出 prompt → 管道 → 直连出图
+archviz-sketch generate -s xiaohei --subject "三层架构循环" \
+  | python3 scripts/grok_image.py --prompt-file - --out illustrations/01-xiaohei.jpg
+
+# 或先存 prompt 再出图
+python3 scripts/grok_image.py --prompt-file prompts/01.md --out illustrations/01.jpg --model grok-2-image
+
+python3 scripts/grok_image.py --list-models     # 发现当前账号可用模型（别硬编码模型名）
 ```
+
+模型默认 `grok-2-image`，可用 `--model` 覆盖（如 `grok-imagine-image-quality`）。
+
+> 备选：若某项目仍配了 Hermes 的 `image_generate`，也可继续用；但本 skill 的默认与推荐是上面的直连脚本。
 
 ### 容错
 
 | 错误 | 处理 |
 |---|---|
-| API超时 | 等10秒重试，最多2次 |
-| 返回错误 | 提示检查API配置 |
-| provider不可用 | 提示切换provider |
+| `XAI_API_KEY is not set` | 先 `export XAI_API_KEY=...` |
+| `HTTP 401/403` | key 无效或额度问题 |
+| `cannot reach api.x.ai` | 网络/代理不通（注意：Cowork 沙箱直连被挡，须在 host 终端跑） |
+| API超时/限流 | 等10秒重试，最多2次 |
 
 ### 保存
 

@@ -7,6 +7,7 @@
 
 ### Added
 - **watercolor** and **architectural-marker** prompt templates + registry entries. The registry/MCP/CLI now actually expose all 6 styles the docs advertised (previously only 4 were reachable in code).
+- `scripts/grok_image.py` — zero-dependency (stdlib only) direct xAI/Grok image generator. Reads `XAI_API_KEY` from env, posts to `/v1/images/generations`, runtime model discovery via `--list-models`, stdin pipe from `archviz-sketch generate`. Removes the Hermes `image_generate` dependency; SKILL.md §[4] updated to make this the default path.
 
 ### Changed
 - `archviz_sketch_generate` description now states it returns a PROMPT, not an image, and points to a configured image-generation tool (Grok/FAL/OpenAI) for the actual render. API keys stay in that tool's config.
