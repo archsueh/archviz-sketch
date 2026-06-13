@@ -30,3 +30,17 @@ Prioritize these as style references in prompt engineering. Always add "visible 
 ## Gotchas (to be expanded from real runs)
 - AI models often "clean up" hand-drawn feel — explicitly negative prompt "clean vector, perfect alignment, glossy, no construction lines".
 - CJK text in sketches requires specific prompt locking for readability without losing wobble.
+
+
+## Additional from 400-free CSV (batch generated)
+- Open Doodles (https://www.opendoodles.com)
+- Sketchfab (free) (https://sketchfab.com/features/free-3d-models)
+
+
+## Expanded batch from 400-free CSV (full hand-drawn/sketch focus)
+- Open Doodles: https://www.opendoodles.com
+- Open Peeps: https://www.openpeeps.com
+- Lukasz Adam: https://lukaszadam.com/illustrations
+- Stubborn: https://stubborn.fun
+- Sketchfab (free): https://sketchfab.com/features/free-3d-models
+- CSS Peeper: https://csspeeper.com
