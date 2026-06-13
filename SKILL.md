@@ -6,7 +6,7 @@ description: |
   需要 image_generate 工具（API由用户自行配置）。
   触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术
 tags: [illustration, sketch, image-generation, pipeline, creative, process-draft]
-version: 0.0.1
+version: 0.0.2
 author: archsueh
 license: MIT
 ---

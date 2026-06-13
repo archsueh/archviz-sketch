@@ -4,7 +4,7 @@
 
 **Base Prompt:**
 
-Create a 2K landscape product design sketch for "{产品/对象}".
+Create a 2K landscape product design sketch for "{{subject}}".
 
 Style: Industrial design process hand sketch on white sketch paper.
 Mode: {3/4 perspective / exploded view / cutaway section / ideation sheet with multiple angles}

@@ -6,7 +6,7 @@
 
 Create a high-resolution image on off-white notebook paper background.
 
-Draw "{主题/核心概念}" in a loose hand-drawn process-draft style using blue ballpoint pen or black marker.
+Draw "{{subject}}" in a loose hand-drawn process-draft style using blue ballpoint pen or black marker.
 
 Key requirements for process-gao feel:
 - Visible construction lines, perspective guides, grid boxes, measurement ticks

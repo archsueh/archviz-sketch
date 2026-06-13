@@ -38,9 +38,23 @@ STYLE_REGISTRY = {
     },
     "xiaohei": {
         "file": "xiaohei.md",
-        "description": "Xiaohei style — Chinese illustration style with warm tones",
+        "description": "Xiaohei style — pure white ground, black line art, 小黑 IP performing the core action, sparse handwritten annotations",
         "schema": {
             "subject": "str — what to draw",
+        },
+    },
+    "watercolor": {
+        "file": "watercolor.md",
+        "description": "Watercolor hand illustration — ink contour + transparent blue-gray washes, for emotional narrative / scenes",
+        "schema": {
+            "subject": "str — what to draw",
+        },
+    },
+    "architectural-marker": {
+        "file": "architectural-marker.md",
+        "description": "Architectural marker sketch — fineliner + loose gray marker, perspective, for spatial / building briefs",
+        "schema": {
+            "subject": "str — space or building to draw",
         },
     },
 }
@@ -67,8 +81,12 @@ def get_prompt(style: str, params: dict) -> str:
 
     prompt = prompt_path.read_text(encoding="utf-8")
 
-    # Inject parameters into prompt
+    # Inject parameters. Templates use {{key}} canonical tokens (e.g. {{subject}}).
+    # Single-brace {key} is also supported for convenience. Other single-brace
+    # spans like {主题/核心隐喻} are intentional guidance for the agent to fill,
+    # so we only substitute keys that were actually provided.
     for key, value in params.items():
-        prompt = prompt.replace(f"{{{{{key}}}}}", str(value))
+        prompt = prompt.replace(f"{{{{{key}}}}}", str(value))  # {{key}}
+        prompt = prompt.replace(f"{{{key}}}", str(value))      # {key}
 
     return prompt

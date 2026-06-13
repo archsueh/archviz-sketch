@@ -8,11 +8,18 @@ mcp = FastMCP("archviz-sketch")
 
 @mcp.tool()
 def archviz_sketch_generate(style: str, params: dict) -> str:
-    """Generate a sketch illustration prompt.
+    """Build an image-generation PROMPT for a sketch illustration (returns text, NOT an image).
+
+    This tool does prompt engineering only. To produce the actual image, pass the
+    returned prompt to your configured image-generation tool (e.g. an `image_generate`
+    tool wired to xAI/Grok, FAL, or OpenAI). API keys live in that tool's config,
+    never here.
 
     Args:
-        style: Sketch style (process-draft, minimal-line, product-handdrawn, xiaohei)
-        params: Parameters (subject, detail_level, angle, etc.)
+        style: One of process-draft, minimal-line, product-handdrawn, xiaohei,
+            watercolor, architectural-marker.
+        params: Fields injected into the template. `subject` (str) is required;
+            other fields named in the template guidance are filled by the agent.
     """
     try:
         return get_prompt(style, params)

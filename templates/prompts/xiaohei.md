@@ -14,7 +14,7 @@ Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture,
 Recurring IP character:
 小黑, a small solid-black absurd creature with white dot eyes, tiny thin legs, blank serious expression. 
 小黑 must perform the core conceptual action (not decorate). 
-Theme: {主题/核心隐喻}
+Theme: {{subject}}
 Structure: {Workflow / 系统局部 / 前后对比 / 概念隐喻}
 Core idea: {核心意思}
 Composition: {小黑在哪里、正在做什么}

@@ -4,7 +4,7 @@
 
 **Base Prompt:**
 
-Create a high-resolution 2K image of "{主题}" in clean minimal line illustration style.
+Create a high-resolution 2K image of "{{subject}}" in clean minimal line illustration style.
 
 Visual language: Fine thin black lines, selective vibrant color accents (max 2-3 colors), strong negative space, elegant composition.
 
