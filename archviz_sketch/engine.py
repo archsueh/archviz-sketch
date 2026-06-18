@@ -28,6 +28,13 @@ STYLE_REGISTRY = {
             "subject": "str — what to draw",
         },
     },
+    "swiss-modernist": {
+        "file": "swiss-modernist.md",
+        "description": "Swiss Modernist / Vignelli grid style — objective layout, bold sans-serif lettering, hairline rules, single-accent identifier",
+        "schema": {
+            "subject": "str — what to draw",
+        },
+    },
     "product-handdrawn": {
         "file": "product-handdrawn.md",
         "description": "Product hand-drawn style — construction lines visible, imperfect feel",

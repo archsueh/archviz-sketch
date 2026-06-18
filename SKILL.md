@@ -98,6 +98,7 @@ images:
 | **产品手绘** | 产品设计、结构展示 | 铅笔+马克笔、爆炸图、剖切图 |
 | **水彩手绘** | 情感叙事、场景 | 透明水洗、墨线轮廓、蓝灰色调 |
 | **建筑马克笔** | 空间设计、建筑展示 | 针管笔+马克笔、透视、留白 |
+| **瑞士网格** | 扁平海报、客观布局、路网标识 | 严格网格、粗黑无衬线大字、细定位线、单色标识 |
 
 ★ = 核心差异化风格
 
@@ -222,6 +223,21 @@ Create a 2K architectural marker sketch for "{空间}".
 Black fineliner, pencil construction, loose gray marker shadows.
 Large white space. Expressive perspective, scale figures.
 Avoid photorealistic arch-viz, CAD.
+```
+
+---
+
+### 3g. 瑞士网格与维涅里标识（Swiss Modernist Grid）
+
+```text
+Create a high-resolution 2K image of "{主题}" in a strict Swiss Modernist poster style.
+Off-white paper background (#f4f1ea) or pure white. Pure flat graphic design (no 3D/shadows).
+Strict modular grid structure with visible column alignment.
+Large bold sans-serif display lettering (Helvetica/Haas Grotesque feel) flush-left, ragged-right.
+Maximum contrast of scale: very large title text vs very small labels.
+Hairline rules and rulers (0.5–2pt) acting as strict structural anchors.
+Accent color: A single bright identifier (e.g. Swiss Red #e4002b or Vermilion #f04e23) to denote structure/flow. Max 1 accent.
+Avoid 3D, drop shadows, gradients, realistic textures, cluttered design, serif fonts.
 ```
 
 ---
