@@ -2,11 +2,11 @@
 name: archviz-sketch
 description: |
   文章配图全流程：内容分析 → 配图策略 → Prompt工程 → 出图 → 视觉质检 → 交付。
-  6种风格，核心差异化：过程稿/作图痕迹（线稿可见、构造线外露、不完美的手作感）。
+  8种风格，核心差异化：过程稿/作图痕迹（线稿可见、构造线外露、不完美的手作感）。
   需要 image_generate 工具（API由用户自行配置）。
   触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术
 tags: [illustration, sketch, image-generation, pipeline, creative, process-draft]
-version: 0.0.2
+version: 0.0.3
 author: archsueh
 license: MIT
 ---
@@ -79,6 +79,7 @@ images:
 | 教学内容 | 小黑 |
 | 个人叙事 | 水彩 + 小黑 |
 | 技术博客 | 小黑 + 极简线条 |
+| 知识管理/个人系统 | **编辑排版** |
 
 用户可覆盖。
 
@@ -86,7 +87,7 @@ images:
 
 ## [3] Prompt工程
 
-6种风格，每种独立prompt模板。
+8种风格，每种独立prompt模板。
 
 ### 风格总览
 
@@ -99,6 +100,7 @@ images:
 | **水彩手绘** | 情感叙事、场景 | 透明水洗、墨线轮廓、蓝灰色调 |
 | **建筑马克笔** | 空间设计、建筑展示 | 针管笔+马克笔、透视、留白 |
 | **瑞士网格** | 扁平海报、客观布局、路网标识 | 严格网格、粗黑无衬线大字、细定位线、单色标识 |
+| **编辑排版** | 知识信息图、个人系统展示 | 奶油底、衬线大标题、深红+黑严格三色、辐射布局 |
 
 ★ = 核心差异化风格
 
@@ -240,6 +242,59 @@ Accent color: A single bright identifier (e.g. Swiss Red #e4002b or Vermilion #f
 Avoid 3D, drop shadows, gradients, realistic textures, cluttered design, serif fonts.
 ```
 
+### 3h. 编辑排版（Editorial Infographic）
+
+**本质：瑞士国际排版风格信息图。** 严格三色、衬线大字、辐射布局、数据墨水比极高。参考「my second brain」类知识图。
+
+```text
+Create a {1600×450 banner / 1200×600 standard} editorial infographic in
+Swiss International Typographic Style.
+
+Background: warm cream paper #F5EFE6, not pure white, very slight paper grain.
+
+Typography:
+- Hero title: large bold serif display (Playfair Display / Bodoni weight), black, flush-left
+- Accent subtitle: ALL CAPS, tight letter-spacing, deep crimson #8B1A1A, 60% size of title
+- Node labels: clean geometric sans-serif (Inter / Helvetica Neue), 11–13px, dark charcoal #1a1a1a
+
+Color palette: STRICT 3 colors only.
+  cream #F5EFE6 (background)
+  black #1a1a1a (text, line, icon stroke)
+  crimson #8B1A1A (accent subtitle, primary flow line, key connector dot)
+No gradients. No shadows. No drop-shadow. No additional colors.
+
+Layout: hub-and-spoke radial, center-weighted, generous whitespace ≥40%.
+Core subject "{主题}" placed at visual center as hub node.
+Spoke arms radiate outward to {6–12} satellite nodes.
+Each satellite: short label (1–4 words) + minimal icon.
+
+Connection lines:
+- Secondary connections: 1px solid black
+- Primary flow path: 1px dashed crimson #8B1A1A
+- Junction points: small open circle ○, 3px diameter, black stroke no fill
+
+Icons: minimal 1px stroke line-art only. No fill. No color. Shapes:
+  document outline / folder outline / bracket / arrow / circle / diamond only.
+  No decorative icons, no emoji-style, no blob shapes.
+
+Overall feel: editorial magazine infographic, Tufte maximum data-ink ratio,
+zero decorative noise, every element earns its place.
+
+Best model: Midjourney > Flux Dev > DALL-E 3
+Aspect ratio: 1600×450 (banner landscape) or 1200×600 (standard)
+
+Prohibited: gradients, drop shadows, >3 colors, rounded colorful bubbles,
+hand-drawn strokes, AI art feel, glowing effects, dark background, icons with fill.
+```
+
+**子类型：**
+
+| 子类型 | 场景 | 比例 | 节点数 |
+|---|---|---|---|
+| 知识系统图 | 个人系统/第二大脑/学习框架 | 1600×450 横幅 | 8–12节点 |
+| 方法论图 | 工作流/决策框架/四象限 | 1200×600 | 6–8节点 |
+| 对比信息图 | 两方案对比/before-after | 1200×600 | 双列各4节点 |
+
 ---
 
 ## [4] 出图
@@ -333,4 +388,5 @@ python3 scripts/grok_image.py --list-models     # 发现当前账号可用模型
 - "过程稿" / "作图痕迹" / "草稿感" / "推演"
 - "小黑风格" / "线条风格" / "水彩风格"
 - "产品手绘" / "建筑手绘"
+- "编辑排版" / "editorial" / "瑞士排版" / "信息图" / "infographic" / "奶油背景"
 - "给文章加图"
