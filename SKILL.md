@@ -421,6 +421,66 @@ python3 scripts/render_hand_drawn_chart.py \
 
 ---
 
+## [8] 概念设计草图 (Carl Liu Style)
+
+交叉优化：archviz-sketch + archviz-3d
+
+**功能：** 工业设计概念草图，参考 Carl Liu 风格
+
+**脚本：** `scripts/render_concept_sketch.py`
+
+**风格特点：**
+- 粗墨线轮廓 + 细辅助线
+- 局部点睛色彩（紫色、绿色、橙色）
+- 手写标注 + 箭头引线
+- 组件分解图
+- 未完成感的手绘抖动
+
+**数据格式：**
+```json
+{
+  "title": "CONCEPT DESIGN",
+  "subtitle": "Device description",
+  "width": 1200,
+  "height": 900,
+  "device": {
+    "x": 400,
+    "y": 150,
+    "width": 200,
+    "height": 350
+  },
+  "annotations": [
+    {"x": 100, "y": 200, "text": "LABEL", "target_x": 450, "target_y": 200}
+  ],
+  "components": [
+    {"name": "Component A"},
+    {"name": "Component B"}
+  ]
+}
+```
+
+**渲染命令：**
+```bash
+python3 scripts/render_concept_sketch.py \
+  --spec concept-spec.json \
+  --outdir ./output \
+  --basename concept-name \
+  --frames 30 \
+  --fps 15
+```
+
+**输出：**
+- `concept-name.gif` — 动画
+- `concept-name.png` — 静态图
+
+**动画效果：**
+- 设备从上到下揭示
+- 施工线淡入
+- 标注逐步出现
+- 组件分解图显示
+
+---
+
 ## 致谢与参考
 
 本项目参考了以下开源项目：

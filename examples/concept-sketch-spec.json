@@ -1,0 +1,27 @@
+{
+  "title": "SCENT TECHNOLOGY DEVICE",
+  "subtitle": "Multi-functional portable scent scanner",
+  "width": 1200,
+  "height": 900,
+  "device": {
+    "x": 400,
+    "y": 150,
+    "width": 200,
+    "height": 350
+  },
+  "annotations": [
+    {"x": 100, "y": 200, "text": "LCD SCREEN", "target_x": 450, "target_y": 200},
+    {"x": 100, "y": 250, "text": "SCENT TUBES", "target_x": 450, "target_y": 350},
+    {"x": 100, "y": 300, "text": "AIR COMPRESSOR", "target_x": 450, "target_y": 400},
+    {"x": 800, "y": 200, "text": "CAMERA", "target_x": 550, "target_y": 200},
+    {"x": 800, "y": 250, "text": "TRACK BALL", "target_x": 550, "target_y": 300},
+    {"x": 800, "y": 300, "text": "LIGHTS", "target_x": 550, "target_y": 250}
+  ],
+  "components": [
+    {"name": "Display Module"},
+    {"name": "Scent Detection Unit"},
+    {"name": "Processing Board"},
+    {"name": "Battery Pack"},
+    {"name": "Sensor Array"}
+  ]
+}

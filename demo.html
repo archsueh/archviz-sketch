@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hand-drawn Chart Demo</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .demo-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 20px;
+            max-width: 900px;
+        }
+        .chart-frame {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+        .info {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .styles {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .style-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1;
+            min-width: 200px;
+        }
+        .style-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .style-card p {
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hand-drawn Chart Styles</h1>
+    
+    <div class="demo-container">
+        <h2>1. Xiaohei Style (小黑怪诞)</h2>
+        <p>Pure white background, black line art, red accents</p>
+        <div class="chart-frame">
+            <img src="output/hand-drawn-demo.gif" alt="Xiaohei style chart">
+        </div>
+        <p class="info">Animation: bars growing from bottom with hand-drawn wobble effect</p>
+    </div>
+
+    <div class="demo-container">
+        <h2>2. Available Styles</h2>
+        <div class="styles">
+            <div class="style-card">
+                <h3>xiaohei</h3>
+                <p>小黑怪诞风格<br>
+                Pure white background<br>
+                Black line art<br>
+                Red/orange/blue accents</p>
+            </div>
+            <div class="style-card">
+                <h3>minimal-line</h3>
+                <p>极简线条风格<br>
+                Clean thin lines<br>
+                Color accents<br>
+                Strong negative space</p>
+            </div>
+            <div class="style-card">
+                <h3>process-draft</h3>
+                <p>过程稿风格<br>
+                Paper texture<br>
+                Construction lines<br>
+                Imperfect hand-drawn feel</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-container">
+        <h2>3. Usage</h2>
+        <pre><code>python3 scripts/render_hand_drawn_chart.py \
+  --spec examples/hand-drawn-chart-spec.json \
+  --outdir ./output \
+  --basename my-chart \
+  --style xiaohei \
+  --frames 30 \
+  --fps 15</code></pre>
+    </div>
+</body>
+</html>
