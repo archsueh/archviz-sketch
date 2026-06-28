@@ -368,6 +368,59 @@ python3 scripts/grok_image.py --list-models     # 发现当前账号可用模型
 
 ---
 
+## [7] 手绘风格图表 (Hand-drawn Charts)
+
+交叉优化：archviz-sketch + archviz-diagram
+
+**功能：** 将柱状图数据转换为手绘风格动画 GIF
+
+**脚本：** `scripts/render_hand_drawn_chart.py`
+
+**支持风格：**
+- `xiaohei` — 小黑怪诞风格（纯白底、黑色线稿、红色点缀）
+- `minimal-line` — 极简线条风格（细线、色彩点缀）
+- `process-draft` — 过程稿风格（纸张纹理、草稿感）
+
+**数据格式：**
+```json
+{
+  "title": "Chart Title",
+  "subtitle": "Description",
+  "categories": ["A", "B", "C"],
+  "values": [10, 20, 15],
+  "labels": ["Label A", "Label B", "Label C"],
+  "width": 800,
+  "height": 500
+}
+```
+
+**渲染命令：**
+```bash
+python3 scripts/render_hand_drawn_chart.py \
+  --spec data.json \
+  --outdir ./output \
+  --basename chart-name \
+  --style xiaohei \
+  --frames 30 \
+  --fps 15
+```
+
+**参数：**
+- `--style`: 风格（xiaohei / minimal-line / process-draft）
+- `--frames`: 帧数（默认 30）
+- `--fps`: 帧率（默认 15）
+
+**输出：**
+- `chart-name.gif` — 动画
+- `chart-name.png` — 静态图
+
+**动画效果：**
+- 柱状图从底部生长
+- 手绘线条抖动效果
+- ease-out 缓动函数
+
+---
+
 ## 致谢与参考
 
 本项目参考了以下开源项目：
