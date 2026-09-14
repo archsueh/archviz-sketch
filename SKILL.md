@@ -4,9 +4,10 @@ description: |
   文章配图全流程：内容分析 → 配图策略 → Prompt工程 → 出图 → 视觉质检 → 交付。
   8种风格，核心差异化：过程稿/作图痕迹（线稿可见、构造线外露、不完美的手作感）。
   需要 image_generate 工具（API由用户自行配置）。
-  触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术
+  触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术。
+  编号手绘（041号 / 手绘风格库 / 不会描述画风）走 handdraw-style-prompter，不要用本 skill 猜编号。
 tags: [illustration, sketch, image-generation, pipeline, creative, process-draft]
-version: 0.0.3
+version: 0.0.4
 author: archsueh
 license: MIT
 ---
@@ -32,6 +33,18 @@ license: MIT
      ↓
 [6] 重试/交付 ← 不合格改prompt重来
 ```
+
+### 和 handdraw-style-prompter 分流
+
+| 用户要的 | 走哪 |
+|---|---|
+| 文章配图、过程稿、小黑、瑞士网格、编辑排版、产品/建筑手绘 | **本 skill**（8 套模板，不要改成编号库） |
+| 编号（`041号`）、手绘风格库、编号画廊、不会描述画风 | `handdraw-style-prompter` |
+| 两边都沾 | 先用本 skill 定「插哪、讲什么」；只有用户指定编号时才把该张的画风交给编号库 |
+
+不要把 001–261 抄进本 skill。编号库见 [yang0/handraw-style](https://github.com/yang0/handraw-style)；Grok 旁路 skill 为 `handdraw-style-prompter`。
+
+出图若用了编号参考图（Grok `image_edit`），必须加参考图隔离块：只借线条/媒介/色彩，不借主体、构图、故事。全文见 `handdraw-style-prompter`。
 
 ---
 
@@ -490,6 +503,7 @@ python3 scripts/render_concept_sketch.py \
 | [baoyu-article-illustrator](https://github.com/JimLiu/baoyu-skills) | 宝玉 (JimLiu) | 配图策略分析框架、Type×Style×Palette三维选型、prompt文件复用机制 |
 | [ian-xiaohei-illustrations](https://github.com/helloianneo/ian-xiaohei-illustrations) | helloianneo | 小黑IP风格DNA、纯白手绘视觉规范、中文批注系统、构图约束 |
 | [linear-concept-art-prompt](https://github.com/archsueh/linear-concept-art-prompt) | archsueh | 过程稿/作图痕迹风格、极简线条/产品手绘/水彩/建筑马克笔prompt模板 |
+| [handraw-style](https://github.com/yang0/handraw-style) | yang0 | 编号手绘库作为旁路 skill；参考图隔离（只借画风不借主体）；名/特征/参考图三级激活 |
 
 小黑（Xiaohei）是 helloianneo 创建的IP形象，本项目仅引用风格描述。
 
@@ -503,3 +517,5 @@ python3 scripts/render_concept_sketch.py \
 - "产品手绘" / "建筑手绘"
 - "编辑排版" / "editorial" / "瑞士排版" / "信息图" / "infographic" / "奶油背景"
 - "给文章加图"
+
+编号手绘（`041号` / 手绘风格库 / 编号画廊）不在本列表：转 `handdraw-style-prompter`。

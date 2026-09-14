@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.4 (2026-09-14)
+
+### Added
+- Route numbered hand-drawn styles (`041号`, 手绘风格库, gallery browse) to sidecar skill `handdraw-style-prompter` (yang0/handraw-style). Eight in-skill templates unchanged.
+- Reference-image isolation when a numbered style image is used: borrow line/medium/color only, never subject or composition.
+- Credit yang0/handraw-style in the acknowledgements table.
+
 ## 0.0.2 (2026-06-14)
 
 ### Fixed

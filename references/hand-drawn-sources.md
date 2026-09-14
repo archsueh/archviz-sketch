@@ -1,5 +1,10 @@
 # Hand-Drawn / Sketch Sources (Curated for archviz-sketch)
 
+## Numbered style catalog (sidecar, do not inline)
+
+- **handraw-style** (https://github.com/yang0/handraw-style)  
+  001–261 numbered hand-drawn styles + bilingual prompts. Grok sidecar skill: `handdraw-style-prompter`. Use when the user picks a number or cannot describe a style. Not a replacement for process-draft / Xiaohei templates.
+
 ## Core Hand-Drawn Illustration Libraries (Free, High Process-Trace Potential)
 
 - **Open Doodles** (https://www.opendoodles.com)  
