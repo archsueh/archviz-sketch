@@ -1,15 +1,18 @@
 ---
 name: archviz-sketch
 description: |
+  ⚠️ 前置条件：需要 `image_generate` 工具（API 由用户自行配置）。缺此工具本 skill 无法出图，请先确认再加载。
   文章配图全流程：内容分析 → 配图策略 → Prompt工程 → 出图 → 视觉质检 → 交付。
   8种风格，核心差异化：过程稿/作图痕迹（线稿可见、构造线外露、不完美的手作感）。
-  需要 image_generate 工具（API由用户自行配置）。
   触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术。
   编号手绘（041号 / 手绘风格库 / 不会描述画风）走 handdraw-style-prompter，不要用本 skill 猜编号。
-tags: [illustration, sketch, image-generation, pipeline, creative, process-draft]
-version: 0.0.4
-author: archsueh
 license: MIT
+metadata:
+  version: 0.0.4
+  source: https://github.com/archsueh/archviz-sketch
+  risk: safe
+  author: archsueh
+  triggers: 配图, 插图, sketch, 手绘, 过程稿, 作图痕迹, 小黑风格, 线条艺术, illustration, image-generation, pipeline, creative, process-draft
 ---
 
 # Sketch Pipeline
