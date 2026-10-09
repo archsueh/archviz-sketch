@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.1.1 (2026-10-09)
+
+### Fixed
+
+- **`references/` 里的两个文件谁也到不了。** SKILL.md 从头到尾没有出现
+  `hand-drawn-sources.md` 或 `gotchas.md`，仓库里也没有别的文件引用它们 ——
+  两个文件都存在、都写了内容，但 agent 永远不会知道它们存在。现已补一节
+  `## 延伸参考 (References)` 索引表把两个都点名。这是套件新增的 `coverage`
+  检查第一次派上用场的现场。
+- **`scripts/` 有未声明的第三方依赖。** `render_concept_sketch.py` 与
+  `render_hand_drawn_chart.py` 顶层 `import PIL`，而仓库既无 `requirements.txt`，
+  pyproject 的 `dependencies = []` 又是刻意的（包本身零依赖）。现由
+  `requirements.txt` 声明 Pillow，并由套件的 `deps` 检查守住不再复发。
+  同一缺陷在**家族五个仓库里全部存在**。
+
+### Added
+
+- **`## 延伸参考 (References)`** —— 本仓第一个真正的 references 索引。
+- **`requirements.txt`** —— `Pillow`。此前干净检出直接 `ImportError`。
+- **`coverage` 检查** —— 套件新增：`references/*.md` 必须从 SKILL.md **可达**。
+  索引里漏一个文件，任何计数都还是对的 —— 这个失效模式 `counts` 结构上看不见。
+- **`deps` 检查** —— 套件新增：把仓库里每个第三方 import 与清单对账。
+
+### Changed
+
+- **`design-judgment` 集成块移出 SKILL.md 正文。** 2026-10-09 20:32:55 有并行会话
+  在五个 archviz 仓库的 SKILL.md 末尾各追加了一段 956 字节的
+  `<!-- design-judgment-integration -->` 块（交付前跑五段判断链自检）。
+  **内容逐字保留，未删改一字**，但 956 字节会把本仓顶到 20,349 / 20,000 —— 超限。
+  现移入 `references/design-judgment.md`，正文只留一行指针，SKILL.md 回到
+  19,759 字节。
+
 ## 0.1.0 (2026-10-09)
 
 This repo had **no CI** before this release, and its style count was wrong in

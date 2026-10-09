@@ -1,0 +1,16 @@
+# Python dependencies for the archviz-sketch scripts.
+#   pip install -r requirements.txt
+#
+# Note: the installable package (archviz_sketch/) has no runtime dependencies —
+# its pyproject `dependencies = []` is deliberate. These are for the standalone
+# scripts only.
+#
+# The consistency kit (scripts/check_archviz.py) is stdlib-only on purpose and
+# needs none of these — it has to be able to guard this repo from a bare Python.
+#
+# Reminder: the scripts here call an image-generation API. Pillow is enough to
+# run them, but without image_generate the skill produces nothing — see the
+# warning at the top of SKILL.md.
+
+# scripts/render_concept_sketch.py, scripts/render_hand_drawn_chart.py
+Pillow>=10.0.0

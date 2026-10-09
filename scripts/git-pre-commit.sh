@@ -16,10 +16,16 @@ else
     echo "No .venv/bin/pip — skipping pip check."
 fi
 
-# One kit, five checks: version / byte budget / routing surface / count claims
-# / CJK encoding. Config lives in archviz-checks.json.
+# One kit, seven checks: version / byte budget / routing surface / count claims
+# / reference reachability / undeclared imports / CJK encoding. Config lives in
+# archviz-checks.json.
 echo "Checking consistency kit..."
 python3 "$ROOT/scripts/check_archviz.py"
 
 echo "Checking consistency kit's own checker..."
 python3 "$ROOT/scripts/check_archviz.py" --self-test >/dev/null
+
+# Note the limit: byte-compilation never *imports*, so it cannot see a missing
+# dependency — that is the kit's `deps` check's job, not this one's.
+echo "Byte-compiling..."
+python3 -m compileall -q "$ROOT/scripts" "$ROOT/archviz_sketch"

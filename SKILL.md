@@ -8,7 +8,7 @@ description: |
   编号手绘（041号 / 手绘风格库 / 不会描述画风）走 handdraw-style-prompter，不要用本 skill 猜编号。
 license: MIT
 metadata:
-  version: 0.1.0
+  version: 0.1.1
   source: https://github.com/archsueh/archviz-sketch
   risk: safe
   author: archsueh
@@ -504,6 +504,17 @@ python3 scripts/render_concept_sketch.py \
 
 ---
 
+## 延伸参考 (References)
+
+按需查阅，**不随 SKILL.md 一起加载**：
+
+| 何时读 | 文件 | 内容 |
+|---|---|---|
+| 需要找手绘素材，或用户报了一个编号风格（041号 之类） | `references/hand-drawn-sources.md` | 编号手绘库（001–261）旁路 skill 的用法与边界、免费插画素材库清单 |
+| 出图效果不对、风格漂移、模型把画面"干净化" | `references/gotchas.md` | 来自真实失败的经验清单：过程稿 / 风格一致性 / 小黑 IP 的实测坑 |
+
+---
+
 ## 致谢与参考
 
 本项目参考了以下开源项目：
@@ -529,3 +540,9 @@ python3 scripts/render_concept_sketch.py \
 - "给文章加图"
 
 编号手绘（`041号` / 手绘风格库 / 编号画廊）不在本列表：转 `handdraw-style-prompter`。
+
+<!-- design-judgment-integration -->
+## 交付前自检 (Post-Generation Design Judgment)
+
+交付前必须跑 `design-judgment` 技能的五段判断链做自检，不要只交付「技术上成功的第一稿」——
+完整规则（五段链 / 六维度 / 选模型路由 / 三条硬边界）见 [`references/design-judgment.md`](references/design-judgment.md)。
