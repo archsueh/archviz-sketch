@@ -1,0 +1,62 @@
+{
+  "kit": 1,
+  "skill_md": "SKILL.md",
+  "skill_md_max_bytes": 20000,
+  "require_lf_pin": true,
+
+  "version": {
+    "changelog": "CHANGELOG.md",
+    "pyproject": "pyproject.toml"
+  },
+
+  "registries": {
+    "styles": {
+      "kind": "source_regex",
+      "file": "archviz_sketch/engine.py",
+      "block": "^STYLE_REGISTRY = \\{(.*?)^\\}",
+      "block_flags": "MS",
+      "entry": "^\\s{4}\"([\\w-]+)\":\\s*\\{",
+      "flags": "M"
+    }
+  },
+
+  "routing": {
+    "registries": ["styles"],
+    "also_check_triggers": false
+  },
+
+  "counts": [
+    {
+      "id": "styles_declared",
+      "truth": { "kind": "registry_len", "registry": "styles" },
+      "assertions": [
+        { "file": "SKILL.md", "regex": "(\\d+)\\s*种风格（" }
+      ]
+    },
+    {
+      "id": "styles_implemented_table_rows",
+      "truth": {
+        "kind": "markdown_table_rows",
+        "file": "SKILL.md",
+        "section": "风格总览",
+        "entry": "^\\|\\s*\\*\\*(?!.*未实现)"
+      },
+      "assertions": [
+        { "file": "SKILL.md", "regex": "(\\d+)\\s*种风格（已实现" }
+      ]
+    }
+  ],
+
+  "cjk": {
+    "scan": [
+      "SKILL.md",
+      "README.md",
+      "CHANGELOG.md",
+      "references/*.md",
+      "templates/prompts/*.md",
+      "demo.html",
+      "demo-styles.html"
+    ],
+    "require_charset": ["demo*.html"]
+  }
+}

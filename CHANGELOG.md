@@ -1,9 +1,76 @@
 # Changelog
 
+## 0.1.0 (2026-10-09)
+
+This repo had **no CI** before this release, and its style count was wrong in
+three places at once. Both are now gated.
+
+### Fixed
+
+- **`pyproject.toml` was 0.0.2 while SKILL.md and CHANGELOG said 0.0.4.**
+  `pip install -e .` would have installed a package whose metadata reported a
+  version the skill never shipped. SKILL.md `metadata.version` is the release
+  truth; everything else is now checked against it.
+- **The style count was wrong: docs said 8, the code has 7.** Corrected in
+  SKILL.md (both occurrences) and in the 0.0.4 entry below, which also claimed
+  "Eight in-skill templates".
+- **`description` named none of the seven style ids.** It listed Chinese trigger
+  words (`过程稿`, `小黑风格`) but not one machine-readable id, so
+  "画个 watercolor 风格" had no lexical hook. All seven ids are now named, each
+  with its Chinese equivalent — the description is the one text an agent reads
+  *before* deciding to load the skill.
+
+### Added
+
+- **`scripts/check_archviz.py`** — the family's portable consistency kit
+  (archviz-diagram ADR-003). One file, per-repo `archviz-checks.json`, stdlib
+  only, no venv and no package import required. Five checks: `version` /
+  `budget` / `routing` / `counts` / `cjk`. `--self-test` carries 23 adversarial
+  fixtures, four of which must **not** fire.
+- **`.github/workflows/ci.yml`** — first CI for this repo: runs the kit, then
+  the kit's own checker.
+- **`scripts/git-pre-commit.sh`** — the same gates locally.
+- **`.gitattributes`** — pins SKILL.md to LF; the byte cap counts LF-normalised
+  bytes.
+- **`archviz-checks.json`** — two count claims, not one:
+  1. the declared style count == `STYLE_REGISTRY` length (7);
+  2. the number of **implemented** rows in SKILL.md's 风格总览 table == 7.
+
+  The second exists because the table carries one row (`编辑排版`) that no
+  registry entry, prompt template, demo, README or reference backs. It is now
+  marked `⛔ 未实现` in the table so the document stops promising what the code
+  cannot do. The check excludes marked rows, so the gate holds the implemented
+  count without deleting a genuine design intention.
+
+### Notes
+
+- **`编辑排版` is not implemented, and never was.** `git log --diff-filter=A --
+  templates/prompts/` shows exactly seven templates have ever been added. The
+  row is kept — it is a real design intention — but it is labelled, and it is
+  not counted as shipped. Whether to implement it or drop it is an open decision.
+- The 0.0.4 entry's "Eight in-skill templates" is corrected in place with a
+  dated note rather than silently rewritten: the entry is a record of what was
+  believed then, and the correction is part of the record.
+
+### Verified
+
+- `scripts/check_archviz.py` → PASS (5/5)
+- `scripts/check_archviz.py --self-test` → 23/23
+- The version check caught the pyproject drift on its first run, before it was
+  fixed — the gate is load-bearing, not decorative.
+
 ## 0.0.4 (2026-09-14)
 
 ### Added
-- Route numbered hand-drawn styles (`041号`, 手绘风格库, gallery browse) to sidecar skill `handdraw-style-prompter` (yang0/handraw-style). Eight in-skill templates unchanged.
+- Route numbered hand-drawn styles (`041号`, 手绘风格库, gallery browse) to sidecar skill `handdraw-style-prompter` (yang0/handraw-style). Seven in-skill templates unchanged.
+
+  > **Correction (2026-10-09):** this line originally read "Eight in-skill
+  > templates" and has been corrected to **Seven**. The repository has always
+  > had seven — `templates/prompts/` and `git log --diff-filter=A --
+  > templates/prompts/` both show seven, and the eighth (`编辑排版`) was never
+  > implemented. It existed only as a row in SKILL.md's style table, which is
+  > now marked `⛔ 未实现`. The number is corrected in place with this dated
+  > note rather than silently, so the record of what was believed then survives.
 - Reference-image isolation when a numbered style image is used: borrow line/medium/color only, never subject or composition.
 - Credit yang0/handraw-style in the acknowledgements table.
 
