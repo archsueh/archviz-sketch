@@ -64,6 +64,15 @@ STYLE_REGISTRY = {
             "subject": "str — space or building to draw",
         },
     },
+    "editorial-infographic": {
+        "file": "editorial-infographic.md",
+        "description": "Editorial infographic — Swiss International Typographic Style, strict 3 colors (cream/black/crimson), serif hero title, hub-and-spoke radial layout, maximum data-ink ratio",
+        "schema": {
+            "subject": "str — the core subject, placed at the radial hub",
+            "satellite_count": "int — 6–12 satellite nodes around the hub (default 8)",
+            "aspect": "str — '1600x450' banner | '1200x600' standard (default '1600x450')",
+        },
+    },
 }
 
 

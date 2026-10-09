@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.1.3 (2026-10-10)
+
+### Added
+
+- **`editorial-infographic`（编辑排版）接线完成 —— 第 8 种风格真正可用。** 此前它是一条
+  「孤儿行」：prompt 完整写在 SKILL.md §3h（55 行），但 `STYLE_REGISTRY` 无条目、
+  `templates/prompts/` 无文件 —— `list_styles()` 不返回它、`mcp_server.py` 不暴露它，
+  agent 照 §3h 出图会拿到 `ValueError: Unknown style`。现在：
+  - `archviz_sketch/engine.py` 新增 registry 条目，schema = `subject` / `satellite_count` / `aspect`
+  - `templates/prompts/editorial-infographic.md` 新增（形状对齐其余 7 个：Base Prompt 带
+    `{{key}}` 占位 + Negative prompt + Quality Checklist + Usage + 子类型表）
+  - frontmatter `description` 补 `editorial-infographic（编辑排版——瑞士国际排版风格知识信息图）`，
+    触发词补 编辑排版 / 信息图 / infographic
+  - SKILL.md 去掉 `⛔ 未实现` 标注与那段自我矛盾警告（净省 390 字节，19,795 → 19,405）
+
+  **为什么是接线而不是丢弃**：prompt 已完成且与 §3a–3g 同构（本质一句 → 代码块 → 子类型表）；
+  丢弃要改 5 处文本并失去家族里唯一覆盖「知识系统 / 第二大脑信息图」体裁的风格。它与
+  `swiss-modernist` **不重复** —— 后者是无衬线海报（grid + 单点缀色），本风格是衬线大标题 +
+  严格三色 + 辐射布局的信息图。判据与决议见 `references/gotchas.md`。
+
+### Fixed
+
+- **`references/gotchas.md` 里「三处缺一即为未实现」的判据是错的。** 它把「③ 示例页」当成必需。
+  实测（2026-10-10）：7 个已实现风格里 `demo-styles.html` 只有 `xiaohei`、`demo.html` 只有 3 个、
+  `README.md` **一个都没有**。真正判据只有 ① `STYLE_REGISTRY` ② `templates/prompts/`；示例页是
+  可选门面，不是契约。原文保留不改写，追加带日期的更正。
+- **`demo-styles.html` §3 标题自称 "All Sketch Styles" 却只有 2 张卡。** 改为 "Rendered Demo
+  Styles" 并加一句「完整清单以 `STYLE_REGISTRY` 为准，不要从本页推断」—— 顺带避免在该页写死
+  一个新的、无人守的计数。
+
 ## 0.1.2 (2026-10-09)
 
 ### Fixed

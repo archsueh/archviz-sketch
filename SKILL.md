@@ -3,12 +3,12 @@ name: archviz-sketch
 description: |
   ⚠️ 需要出图 API，否则不可用。缺 image_generate 工具本 skill 无法出图，请先确认再加载。
   文章配图全流程：内容分析 → 配图策略 → Prompt工程 → 出图 → 视觉质检 → 交付。
-  7 种风格（style id）：process-draft（过程稿——核心差异化：构造线外露、不完美手作感）、minimal-line（极简线稿）、swiss-modernist（瑞士现代主义）、product-handdrawn（产品手绘）、xiaohei（小黑风格）、watercolor（水彩）、architectural-marker（建筑马克笔）。
-  触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术、水彩、建筑马克笔、瑞士现代主义、产品手绘、极简线稿。
+  8 种风格（style id）：process-draft（过程稿——核心差异化：构造线外露、不完美手作感）、minimal-line（极简线稿）、swiss-modernist（瑞士现代主义）、product-handdrawn（产品手绘）、xiaohei（小黑风格）、watercolor（水彩）、architectural-marker（建筑马克笔）、editorial-infographic（编辑排版——瑞士国际排版风格知识信息图）。
+  触发词：配图、插图、sketch、手绘、过程稿、作图痕迹、小黑风格、线条艺术、水彩、建筑马克笔、瑞士现代主义、产品手绘、极简线稿、编辑排版、信息图、infographic。
   编号手绘（041号 / 手绘风格库 / 不会描述画风）走 handdraw-style-prompter，不要用本 skill 猜编号。
 license: MIT
 metadata:
-  version: 0.1.2
+  version: 0.1.3
   source: https://github.com/archsueh/archviz-sketch
   risk: safe
   author: archsueh
@@ -43,7 +43,7 @@ metadata:
 
 | 用户要的 | 走哪 |
 |---|---|
-| 文章配图、过程稿、小黑、瑞士网格、编辑排版、产品/建筑手绘 | **本 skill**（7 套模板，不要改成编号库） |
+| 文章配图、过程稿、小黑、瑞士网格、编辑排版、产品/建筑手绘 | **本 skill**（8 套模板，不要改成编号库） |
 | 编号（`041号`）、手绘风格库、编号画廊、不会描述画风 | `handdraw-style-prompter` |
 | 两边都沾 | 先用本 skill 定「插哪、讲什么」；只有用户指定编号时才把该张的画风交给编号库 |
 
@@ -105,7 +105,7 @@ images:
 
 ## [3] Prompt工程
 
-7 种风格（已实现，即 `STYLE_REGISTRY` 与 `templates/prompts/` 的内容），每种独立prompt模板。
+8 种风格（已实现，即 `STYLE_REGISTRY` 与 `templates/prompts/` 的内容），每种独立prompt模板。
 
 ### 风格总览
 
@@ -118,15 +118,9 @@ images:
 | **水彩手绘** | 情感叙事、场景 | 透明水洗、墨线轮廓、蓝灰色调 |
 | **建筑马克笔** | 空间设计、建筑展示 | 针管笔+马克笔、透视、留白 |
 | **瑞士网格** | 扁平海报、客观布局、路网标识 | 严格网格、粗黑无衬线大字、细定位线、单色标识 |
-| **编辑排版** ⛔ 未实现 | 知识信息图、个人系统展示 | 奶油底、衬线大标题、深红+黑严格三色、辐射布局 |
+| **编辑排版** | 知识信息图、个人系统展示 | 奶油底、衬线大标题、深红+黑严格三色、辐射布局 |
 
 ★ = 核心差异化风格
-
-> ⛔ **编辑排版尚未接线**：prompt 已写在 §3h，但 `STYLE_REGISTRY` 无条目、`templates/prompts/`
-> 无对应文件、`demo-styles.html` 未收录。`list_styles()` 不返回它，按它出图会失败 ——
-> agent 只能照 §3h 的 prompt 手动出图。
-> 本行保留是因为它是一个真实的设计意图，但**在补上 registry 条目与 prompt 模板之前不算已交付**。
-> 计数闸门（`scripts/check_archviz.py` 的 `counts`）按**已实现**的 7 种校验。
 
 ---
 
