@@ -8,7 +8,7 @@ description: |
   编号手绘（041号 / 手绘风格库 / 不会描述画风）走 handdraw-style-prompter，不要用本 skill 猜编号。
 license: MIT
 metadata:
-  version: 0.1.1
+  version: 0.1.2
   source: https://github.com/archsueh/archviz-sketch
   risk: safe
   author: archsueh
@@ -43,7 +43,7 @@ metadata:
 
 | 用户要的 | 走哪 |
 |---|---|
-| 文章配图、过程稿、小黑、瑞士网格、编辑排版、产品/建筑手绘 | **本 skill**（8 套模板，不要改成编号库） |
+| 文章配图、过程稿、小黑、瑞士网格、编辑排版、产品/建筑手绘 | **本 skill**（7 套模板，不要改成编号库） |
 | 编号（`041号`）、手绘风格库、编号画廊、不会描述画风 | `handdraw-style-prompter` |
 | 两边都沾 | 先用本 skill 定「插哪、讲什么」；只有用户指定编号时才把该张的画风交给编号库 |
 
@@ -122,8 +122,9 @@ images:
 
 ★ = 核心差异化风格
 
-> ⛔ **编辑排版尚未实现**：它只有本表这一行，`STYLE_REGISTRY` 无条目、`templates/prompts/` 无模板、
-> `demo-styles.html` 与 `references/` 均未提及。`list_styles()` 不会返回它，按它出图会失败。
+> ⛔ **编辑排版尚未接线**：prompt 已写在 §3h，但 `STYLE_REGISTRY` 无条目、`templates/prompts/`
+> 无对应文件、`demo-styles.html` 未收录。`list_styles()` 不返回它，按它出图会失败 ——
+> agent 只能照 §3h 的 prompt 手动出图。
 > 本行保留是因为它是一个真实的设计意图，但**在补上 registry 条目与 prompt 模板之前不算已交付**。
 > 计数闸门（`scripts/check_archviz.py` 的 `counts`）按**已实现**的 7 种校验。
 

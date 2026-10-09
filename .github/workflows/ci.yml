@@ -45,7 +45,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Note the limit: byte-compilation never *imports*, so it cannot see a
-    # missing dependency — that is `deps`' job, not this one's.
-    - name: Byte-compile
-      run: python3 -m compileall -q scripts archviz_sketch
+    # Byte-compilation used to be its own `compileall -q scripts archviz_sketch`
+    # step here. It now lives in the consistency kit's `pycompile` check, which
+    # walks the whole repo rather than two directories and uses the builtin
+    # `compile()`, so it leaves no `__pycache__` in the tree it inspects.
+    # Measured 2026-10-09: the narrow version could not see examples/ or
+    # templates/python/, and the family's only broken file lived in one of them.

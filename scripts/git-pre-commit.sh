@@ -16,16 +16,17 @@ else
     echo "No .venv/bin/pip — skipping pip check."
 fi
 
-# One kit, seven checks: version / byte budget / routing surface / count claims
-# / reference reachability / undeclared imports / CJK encoding. Config lives in
-# archviz-checks.json.
+# The kit owns version / byte budget / routing surface / count claims /
+# reference reachability / declared imports / compilation / CJK encoding.
+# Do not write the count here — run `python3 scripts/check_archviz.py --list`.
+# This comment has drifted twice already. Config lives in archviz-checks.json.
 echo "Checking consistency kit..."
 python3 "$ROOT/scripts/check_archviz.py"
 
 echo "Checking consistency kit's own checker..."
 python3 "$ROOT/scripts/check_archviz.py" --self-test >/dev/null
 
-# Note the limit: byte-compilation never *imports*, so it cannot see a missing
-# dependency — that is the kit's `deps` check's job, not this one's.
-echo "Byte-compiling..."
-python3 -m compileall -q "$ROOT/scripts" "$ROOT/archviz_sketch"
+# Byte-compilation used to be its own `compileall -q "$ROOT/scripts"
+# "$ROOT/archviz_sketch"` step here. It is now the kit's `pycompile` check,
+# which walks the whole repo instead of two directories and uses the builtin
+# `compile()`, so it leaves no `__pycache__` in the tree it inspects.

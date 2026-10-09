@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.1.2 (2026-10-09)
+
+### Fixed
+
+- **「8 套模板」是错的 —— 而且这是同一个数的第三次漏网。** `templates/prompts/` 有 7 个
+  文件、`STYLE_REGISTRY` 有 7 个条目、`list_styles()` 返回 7 个。`references/gotchas.md`
+  早就记过这件事，0.0.4 的 CHANGELOG 条目也做过带日期的更正，但当时修的是 §风格总览的
+  「8种风格」和 description 里的同名计数，**漏了「和 handdraw-style-prompter 分流」表里的
+  「8 套模板」** —— 那一行不在 `counts` 的任何断言里，所以闸门也看不见它。现已改成 7，
+  并把 `(\d+)\s*套模板` 加进 `counts`（真值 = `templates/prompts/*.md` 的 glob 计数）。
+  教训不是「数错了」，是**修完要全仓 grep 那个数**：一处断言只锁一处文本。
+- **`⛔ 编辑排版尚未实现` 那句自我矛盾。** 它说「只有本表这一行」，但 §3h 有完整 prompt
+  块（55 行）与子类型表。真正缺的是引擎侧接线：`STYLE_REGISTRY` 无条目、
+  `templates/prompts/` 无对应文件、`demo-styles.html` 未收录 —— 这三条属实。措辞已改成
+  与实况相符（并更短）。
+
+### Added
+
+- **套件第 8 项检查 `pycompile`**：递归扫全仓 `.py`，用内建 `compile()`，不写
+  `__pycache__`（此前的 `compileall -q scripts archviz_sketch` 会写，且只覆盖两个目录）。
+- **`deps` 增加反方向核对**：声明了但没有任何代码 import 的依赖会失败，豁免必须写进
+  `deps.unused_exempt` 并说明理由。
+- `counts` 新增 `prompt_templates`（真值 = `templates/prompts/*.md` 计数）。
+
+### Changed
+
+- 套件 `KIT_VERSION` 1 → 2。CI 与 pre-commit 的 `compileall` 步骤移除（由套件接管）；
+  注释里写死的检查条数（「seven checks」）删掉，改成指向
+  `python3 scripts/check_archviz.py --list`。
+- `references/gotchas.md` 里那条「SKILL.md 两处」的记载补了更正：实际是三处。
+
 ## 0.1.1 (2026-10-09)
 
 ### Fixed
